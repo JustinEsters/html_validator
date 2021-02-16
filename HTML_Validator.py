@@ -35,7 +35,7 @@ def validate_html(html):
                 stack.pop()
             else:
                 return False
-    return len(stack) == 0
+    return(len(stack)) == 0
 
 
 def _extract_tags(html):
@@ -55,11 +55,13 @@ def _extract_tags(html):
     ['<strong>', '</strong>']
     '''
     listy = []
+    if '>' not in html:
+        return listy
     for i in range(len(html)):
-        if html[i] == "<":
+        if html[i] == '<':
             count = 0
             b = i
-            while html[b] != ">":
+            while html[b] != '>':
                 count += 1
                 b += 1
             listy.append(html[i:b+1])
